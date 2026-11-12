@@ -1,0 +1,4 @@
+com\shopsoft\App.class
+com\shopsoft\Conexion.class
+com\shopsoft\ProductoDAO.class
+com\shopsoft\Main.class
