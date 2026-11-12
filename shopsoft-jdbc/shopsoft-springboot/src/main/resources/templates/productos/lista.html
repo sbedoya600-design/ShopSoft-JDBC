@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventario ShopSoft</title>
+<style>
+body{font-family:Arial;background:#f2f5f3;padding:30px;color:#263238}main{max-width:1000px;margin:auto;background:white;padding:25px;border-radius:12px}
+h1{color:#176b45}a,button{padding:9px 12px;border:0;border-radius:6px;text-decoration:none;cursor:pointer}
+.nuevo{background:#176b45;color:white}table{width:100%;border-collapse:collapse;margin-top:20px}th,td{padding:12px;border-bottom:1px solid #ddd;text-align:left}th{background:#e8f3ed}
+.editar{background:#e6a700;color:#222}.eliminar{background:#b42318;color:white}form{display:inline}
+</style></head>
+<body><main><h1>ShopSoft - Inventario</h1><p>Módulo desarrollado con Spring Boot y Thymeleaf.</p>
+<a class="nuevo" th:href="@{/productos/nuevo}">Registrar producto</a>
+<table><thead><tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Cantidad</th><th>Acciones</th></tr></thead>
+<tbody><tr th:each="p : ${productos}">
+<td th:text="${p.idProducto}"></td><td th:text="${p.nombre}"></td><td th:text="${p.precio}"></td><td th:text="${p.cantidad}"></td>
+<td><a class="editar" th:href="@{/productos/editar/{id}(id=${p.idProducto})}">Editar</a>
+<form th:action="@{/productos/eliminar/{id}(id=${p.idProducto})}" method="post"><button class="eliminar" onclick="return confirm('¿Eliminar producto?')">Eliminar</button></form></td>
+</tr><tr th:if="${#lists.isEmpty(productos)}"><td colspan="5">No hay productos registrados.</td></tr></tbody></table></main></body></html>
